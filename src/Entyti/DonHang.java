@@ -29,5 +29,77 @@ public class DonHang {
         this.tongTien = tongTien;
         this.ghiChu = ghiChu;
     }
+
+    public String getMaDH() {
+        return maDH;
+    }
+
+    public void setMaDH(String maDH) {
+        this.maDH = maDH;
+    }
+
+    public String getMaKH() {
+        return maKH;
+    }
+
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
+    }
+
+    public String getMaDHDV() {
+        return maDHDV;
+    }
+
+    public void setMaDHDV(String maDHDV) {
+        this.maDHDV = maDHDV;
+    }
+
+    public String getMaDHB() {
+        return maDHB;
+    }
+
+    public void setMaDHB(String maDHB) {
+        this.maDHB = maDHB;
+    }
+
+    public String getMaNV() {
+        return maNV;
+    }
+
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
+    }
+
+    public String getNgayTao() {
+        return ngayTao;
+    }
+
+    public void setNgayTao(String ngayTao) {
+        this.ngayTao = ngayTao;
+    }
+
+    public int getKhuyenMai() {
+        return khuyenMai;
+    }
+
+    public void setKhuyenMai(int khuyenMai) {
+        this.khuyenMai = khuyenMai;
+    }
+
+    public float getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public String getGhiChu() {
+        return ghiChu;
+    }
+
+    public void setGhiChu(String ghiChu) {
+        this.ghiChu = ghiChu;
+    }
     
 }
