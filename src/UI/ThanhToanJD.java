@@ -16,6 +16,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
     public ThanhToanJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

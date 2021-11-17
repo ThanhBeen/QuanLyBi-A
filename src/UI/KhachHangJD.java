@@ -16,6 +16,7 @@ public class KhachHangJD extends javax.swing.JDialog {
     public KhachHangJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
