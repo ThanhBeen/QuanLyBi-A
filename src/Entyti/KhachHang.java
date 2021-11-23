@@ -11,15 +11,14 @@ import java.util.Date;
  * @author thanh
  */
 public class KhachHang {
-    private String maKH, hoTen;
-    private boolean gioiTinh;
+    private String maKH, hoTen, gioiTinh;
     private String sdt, maNV;
     private Date ngayDK;
 
     public KhachHang() {
     }
 
-    public KhachHang(String maKH, String hoTen, boolean gioiTinh, String sdt, String maNV, Date ngayDK) {
+    public KhachHang(String maKH, String hoTen, String gioiTinh, String sdt, String maNV, Date ngayDK) {
         this.maKH = maKH;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
@@ -44,11 +43,11 @@ public class KhachHang {
         this.hoTen = hoTen;
     }
 
-    public boolean isGioiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
+    public void setGioiTinh(String gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
@@ -75,5 +74,6 @@ public class KhachHang {
     public void setNgayDK(Date ngayDK) {
         this.ngayDK = ngayDK;
     }
+
     
 }

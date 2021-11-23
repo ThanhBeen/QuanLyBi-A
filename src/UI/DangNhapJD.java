@@ -6,6 +6,7 @@ package UI;
 
 import DAO.NhanVienDAO;
 import Entyti.NhanVien;
+import Utils.Auth;
 import Utils.MsgBox;
 import javax.swing.JOptionPane;
 
@@ -37,7 +38,7 @@ public class DangNhapJD extends javax.swing.JDialog {
             if(!nv.getMatKhau().equals(pass)){
                 MsgBox.alert(this, "Sai mật khẩu");
             }else{
-                //Auth.user = nv;
+                Auth.user = nv;
                 MsgBox.alert(this, "Đăng nhập thành công");
                 this.dispose();
             }

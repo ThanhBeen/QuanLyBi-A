@@ -17,7 +17,7 @@ import java.sql.SQLException;
 public class JDBCHelper {
 
     static String drive = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-    static String url = "jdbc:sqlserver://localhost:1433;databaseName=EduSys";
+    static String url = "jdbc:sqlserver://localhost:1433;databaseName=QLQuanBi-A";
     static String user = "sa";
     static String pass = "123";
 

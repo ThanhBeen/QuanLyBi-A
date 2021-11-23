@@ -15,8 +15,9 @@ import java.util.List;
  * @author thanh_rdcaeo8
  */
 public class NhanVienDAO extends QuanLyBiADAO<NhanVien, String>{
-    String insert = "Insert into NhanVien Values(?, ?, ?, ?)";
-    String update = "Update  NhanVien set MatKhau = ?, HoTen = ?, VaiTro = ? where maNV like ?";
+    String insert = "Insert into NhanVien Values(?, ?, ?, ?, ?, ?, ?, ?)";
+    String update = "Update  NhanVien set MatKhau = ?, HoTen = ?, GioiTinh = ?, "
+            + "SDT = ?, VaiTro = ?, Email = ?, hinh = ? where maNV like ?";
     String delete = "Delete from NhanVien where maNV = ?";
     String selectAll = "select * from NhanVien";
     String selectById = "Select * from NhanVien Where maNV = ?";
@@ -24,14 +25,14 @@ public class NhanVienDAO extends QuanLyBiADAO<NhanVien, String>{
 
     @Override
     public void insert(NhanVien entity) {
-        JDBCHelper.update(insert, entity.getMaNV(), entity.getMatKhau(), 
-                entity.getHoTen(), entity.isVaiTro());
+        JDBCHelper.update(insert, entity.getMaNV(), entity.getMatKhau(), entity.getHoTen(),
+                entity.getGoiTinh(), entity.getSdt(), entity.isVaiTro(), entity.getEmail(), entity.getHinh());
     }
 
     @Override
     public void update(NhanVien entity) {
-        JDBCHelper.update(update, entity.getMatKhau(), entity.getHoTen(), 
-                entity.isVaiTro(), entity.getMaNV());
+        JDBCHelper.update(update, entity.getMatKhau(), entity.getHoTen(),entity.getGoiTinh(),
+                entity.getSdt(), entity.isVaiTro(), entity.getEmail(), entity.getHinh(), entity.getMaNV());
     }
 
     @Override
@@ -65,7 +66,10 @@ public class NhanVienDAO extends QuanLyBiADAO<NhanVien, String>{
                 entity.setMaNV(rs.getString(1));
                 entity.setMatKhau(rs.getString(2));
                 entity.setHoTen(rs.getString(3));
-                entity.setVaiTro(rs.getBoolean(4));
+                entity.setGoiTinh(rs.getString(4));
+                entity.setSdt(rs.getString(5));
+                entity.setVaiTro(rs.getBoolean(6));
+                entity.setHinh(rs.getString(7));
                 list.add(entity);
             }
             
@@ -75,6 +79,5 @@ public class NhanVienDAO extends QuanLyBiADAO<NhanVien, String>{
             e.printStackTrace();
             throw new RuntimeException(e);
         }
-        
     }
 }
