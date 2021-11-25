@@ -3,10 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Công%20Thành/Fall%202021/QuanLyBi-A/src/UI/DangNhapJD.java</file>
-            <file>file:/D:/Công%20Thành/Fall%202021/QuanLyBi-A/src/Utils/Auth.java</file>
-            <file>file:/D:/Công%20Thành/Fall%202021/QuanLyBi-A/src/DAO/NhanVienDAO.java</file>
-            <file>file:/D:/Công%20Thành/Fall%202021/QuanLyBi-A/src/UI/Main.java</file>
+            <file>file:/E:/DuAn/QuanLyBi-A/src/UI/Main.java</file>
+            <file>file:/E:/DuAn/QuanLyBi-A/src/Utils/JDBCHelper.java</file>
         </group>
     </open-files>
 </project-private>
