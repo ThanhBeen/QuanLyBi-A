@@ -4,6 +4,9 @@
  */
 package UI;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Thuyen PC
@@ -16,7 +19,15 @@ public class ThanhToanJD extends javax.swing.JDialog {
     public ThanhToanJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocationRelativeTo(null);
+        init();
+        
+    }
+    
+    private void init(){
+        this.setLocationRelativeTo(null);
+        Date now = new Date();
+        String check = new SimpleDateFormat("dd-MM-yyyy").format(now);
+        txtNgayTao.setText(check);
     }
 
     /**
@@ -61,9 +72,9 @@ public class ThanhToanJD extends javax.swing.JDialog {
         jSeparator11 = new javax.swing.JSeparator();
         txtUseName = new javax.swing.JTextField();
         txtUseName1 = new javax.swing.JTextField();
-        txtUseName2 = new javax.swing.JTextField();
-        txtUseName3 = new javax.swing.JTextField();
+        txtNgayTao = new javax.swing.JTextField();
         txtUseName4 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         jSeparator5.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -240,17 +251,15 @@ public class ThanhToanJD extends javax.swing.JDialog {
         txtUseName1.setText("KH001");
         txtUseName1.setBorder(null);
 
-        txtUseName2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName2.setText("KH001");
-        txtUseName2.setBorder(null);
-
-        txtUseName3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName3.setText("KH001");
-        txtUseName3.setBorder(null);
+        txtNgayTao.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtNgayTao.setText("KH001");
+        txtNgayTao.setBorder(null);
 
         txtUseName4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtUseName4.setText("KH001");
         txtUseName4.setBorder(null);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -282,7 +291,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(58, 58, 58)
-                                .addComponent(txtUseName3))
+                                .addComponent(txtNgayTao))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(58, 58, 58)
@@ -299,11 +308,15 @@ public class ThanhToanJD extends javax.swing.JDialog {
                                     .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jSeparator9, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUseName)
-                                    .addComponent(jComboBox1, 0, 188, Short.MAX_VALUE)
-                                    .addComponent(txtUseName2))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(txtUseName)
+                                            .addComponent(jComboBox1, 0, 188, Short.MAX_VALUE)))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                         .addGap(25, 25, 25))))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(102, 102, 102)
@@ -343,7 +356,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)
+                        .addGap(7, 7, 7)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(41, 41, 41)
@@ -351,10 +364,10 @@ public class ThanhToanJD extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtUseName3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(txtNgayTao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUseName2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jSeparator11, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -377,7 +390,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 10, Short.MAX_VALUE))
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         pack();
@@ -433,6 +446,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -462,10 +476,9 @@ public class ThanhToanJD extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtUseName;
     private javax.swing.JTextField txtUseName1;
-    private javax.swing.JTextField txtUseName2;
-    private javax.swing.JTextField txtUseName3;
     private javax.swing.JTextField txtUseName4;
     // End of variables declaration//GEN-END:variables
 }

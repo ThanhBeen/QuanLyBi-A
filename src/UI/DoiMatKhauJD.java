@@ -290,10 +290,8 @@ public class DoiMatKhauJD extends javax.swing.JDialog {
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
     private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
-        int choice = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát?", "Kết thúc", 1);
-        if (choice == 0) {
+
             this.dispose();
-        }
     }//GEN-LAST:event_btnQuayLaiActionPerformed
 
     /**

@@ -8,8 +8,10 @@ import Entyti.KhachHang;
 import Entyti.NhanVien;
 import Utils.JDBCHelper;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -22,6 +24,7 @@ public class KhachHangDAO extends QuanLyBiADAO<KhachHang, String>{
     String delete = "Delete from KhachHang where maKH = ?";
     String selectAll = "select * from KhachHang";
     String selectById = "Select * from KhachHang Where maKH = ?";
+    String comboBoxMaNV = "Select MaNV from NhanVien";
 
     @Override
     public void insert(KhachHang entity) {
@@ -45,7 +48,7 @@ public class KhachHangDAO extends QuanLyBiADAO<KhachHang, String>{
         return selectBySql(selectAll);
     }
         
-
+    
     @Override
     public KhachHang selectById(String id) {
         List<KhachHang> list = selectBySql(selectById, id);
@@ -80,4 +83,12 @@ public class KhachHangDAO extends QuanLyBiADAO<KhachHang, String>{
         }
     }
     
+    public void comboBoxMaNV(JComboBox cboMaNV) throws SQLException{
+        ResultSet rs = JDBCHelper.query(comboBoxMaNV);
+        cboMaNV.removeAllItems();
+        cboMaNV.addItem("Chọn mã người tạo");
+        while(rs.next()){
+            cboMaNV.addItem(rs.getString(1));
+        }
+    }
 }

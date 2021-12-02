@@ -106,7 +106,7 @@ public class DangNhapJD extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         txtUseName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName.setText("Username");
+        txtUseName.setText("NV001");
         txtUseName.setBorder(null);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -129,7 +129,7 @@ public class DangNhapJD extends javax.swing.JDialog {
         });
 
         txtPassWord.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtPassWord.setText("Pass");
+        txtPassWord.setText("1234");
         txtPassWord.setBorder(null);
 
         btnKetThuc.setBackground(new java.awt.Color(0, 102, 102));
