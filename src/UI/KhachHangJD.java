@@ -16,8 +16,11 @@ public class KhachHangJD extends javax.swing.JDialog {
     public KhachHangJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        init();
     }
-
+    private void init(){
+        this.setLocationRelativeTo(null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,19 +133,24 @@ public class KhachHangJD extends javax.swing.JDialog {
         });
 
         txtUseName.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName.setText("Username");
+        txtUseName.setText("KH001");
         txtUseName.setBorder(null);
 
         txtUseName1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName1.setText("Username");
+        txtUseName1.setText("Trần An Thuyên");
         txtUseName1.setBorder(null);
 
         txtUseName2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName2.setText("Username");
+        txtUseName2.setText("0988168268");
         txtUseName2.setBorder(null);
+        txtUseName2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUseName2ActionPerformed(evt);
+            }
+        });
 
         txtUseName3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtUseName3.setText("Username");
+        txtUseName3.setText("137 Nguyễn Thị Thập");
         txtUseName3.setBorder(null);
 
         jSeparator2.setBackground(new java.awt.Color(0, 153, 153));
@@ -256,6 +264,7 @@ public class KhachHangJD extends javax.swing.JDialog {
                 "MÃ KH", "SĐT", "Tên KH", "Địa Chỉ"
             }
         ));
+        jTable1.setRowHeight(24);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -302,6 +311,10 @@ public class KhachHangJD extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtUseName2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUseName2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUseName2ActionPerformed
 
     /**
      * @param args the command line arguments
