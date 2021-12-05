@@ -16,12 +16,12 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String matKhau, String hoTen, String goiTinh, 
+    public NhanVien(String maNV, String matKhau, String hoTen, String gioiTinh, 
             String sdt, boolean vaiTro, String email, String hinh) {
         this.maNV = maNV;
         this.matKhau = matKhau;
         this.hoTen = hoTen;
-        this.gioiTinh = goiTinh;
+        this.gioiTinh = gioiTinh;
         this.sdt = sdt;
         this.vaiTro = vaiTro;
         this.email = email;
@@ -52,12 +52,12 @@ public class NhanVien {
         this.hoTen = hoTen;
     }
 
-    public String getGoiTinh() {
+    public String getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGoiTinh(String goiTinh) {
-        this.gioiTinh = goiTinh;
+    public void setGioiTinh(String gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
     public String getSdt() {
@@ -91,9 +91,7 @@ public class NhanVien {
     public void setHinh(String hinh) {
         this.hinh = hinh;
     }
-    
-    
-    
+
     @Override
     public String toString(){
         return this.hoTen;

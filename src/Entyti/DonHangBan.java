@@ -17,7 +17,8 @@ public class DonHangBan {
     public DonHangBan() {
     }
 
-    public DonHangBan(String maDHB, int maBan, String thoiGianBatDau, String thoiGianKetThuc, float gioThue, float gia, float tongTien) {
+    public DonHangBan(String maDHB, int maBan, String thoiGianBatDau, 
+            String thoiGianKetThuc, float gioThue, float gia, float tongTien) {
         this.maDHB = maDHB;
         this.maBan = maBan;
         this.thoiGianBatDau = thoiGianBatDau;

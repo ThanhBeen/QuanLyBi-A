@@ -26,12 +26,12 @@ public class NhanVienDAO extends QuanLyBiADAO<NhanVien, String>{
     @Override
     public void insert(NhanVien entity) {
         JDBCHelper.update(insert, entity.getMaNV(), entity.getMatKhau(), entity.getHoTen(),
-                entity.getGoiTinh(), entity.getSdt(), entity.isVaiTro(), entity.getEmail(), entity.getHinh());
+                entity.getGioiTinh(), entity.getSdt(), entity.isVaiTro(), entity.getEmail(), entity.getHinh());
     }
 
     @Override
     public void update(NhanVien entity) {
-        JDBCHelper.update(update, entity.getMatKhau(), entity.getHoTen(),entity.getGoiTinh(),
+        JDBCHelper.update(update, entity.getMatKhau(), entity.getHoTen(),entity.getGioiTinh(),
                 entity.getSdt(), entity.isVaiTro(), entity.getEmail(), entity.getHinh(), entity.getMaNV());
     }
 
@@ -66,10 +66,10 @@ public class NhanVienDAO extends QuanLyBiADAO<NhanVien, String>{
                 entity.setMaNV(rs.getString(1));
                 entity.setMatKhau(rs.getString(2));
                 entity.setHoTen(rs.getString(3));
-                entity.setGoiTinh(rs.getString(4));
+                entity.setGioiTinh(rs.getString(4));
                 entity.setSdt(rs.getString(5));
                 entity.setVaiTro(rs.getBoolean(6));
-                entity.setHinh(rs.getString(7));
+                entity.setEmail(rs.getString(7));
                 list.add(entity);
             }
             
