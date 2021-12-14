@@ -188,7 +188,7 @@ public class KhachHangJD extends javax.swing.JDialog {
         }
         if(check != 0){
             if(dao.selectById(txtMaKH.getText()) != null){
-            sb.append("Mã khách hàng này đã tồn tại trong CSDL vui lòng nhập mã người học khác\n");
+            sb.append("Mã khách hàng này đã tồn tại trong CSDL vui lòng nhập mã khách hàng khác\n");
             kq = false;
             }
         }

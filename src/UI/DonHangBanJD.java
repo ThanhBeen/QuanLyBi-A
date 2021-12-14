@@ -4,7 +4,9 @@
  */
 package UI;
 
+import DAO.BanDAO;
 import DAO.DonHangBanDAO;
+import Entyti.Ban;
 import Entyti.DonHangBan;
 import Utils.JDBCHelper;
 import Utils.MsgBox;
@@ -21,6 +23,7 @@ import javax.swing.JOptionPane;
 public class DonHangBanJD extends javax.swing.JDialog {
 
     DonHangBanDAO dao = new DonHangBanDAO();
+    BanDAO BanDAO = new BanDAO();
 
     public DonHangBanJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -30,7 +33,15 @@ public class DonHangBanJD extends javax.swing.JDialog {
 
     private void init() {
         this.setLocationRelativeTo(null);
+        Date now = new Date();
+        gioBatDau();
         fillComboBoxMaBan();
+    }
+    
+    void gioBatDau(){
+        Date now = new Date();
+        String check = new SimpleDateFormat("HH:mm").format(now);
+        txtGioBatDau.setText(check);
     }
 
     void soGio() {
@@ -41,7 +52,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
             Date d1 = format.parse(gioBatDau);
             Date d2 = format.parse(gioKetThuc);
             float diff = d2.getTime() - d1.getTime();
-            float soGio = diff / (60 * 60 * 1000) % 24;
+            Float soGio = diff / (60 * 60 * 1000) % 24;
             String.format("%.2f", soGio);
             txtSoGio.setText(soGio + "");
 
@@ -83,7 +94,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
         txtGioBatDau.setText("");
         txtGioKetThuc.setText("");
         txtMaHĐBan.setText("");
-        txtSoGio.setText("");
+        gioBatDau();
         txtTongTien.setText("");
         cboMaBan.setSelectedIndex(0);
 
@@ -123,7 +134,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
         }
 
         if (dao.selectById(txtMaHĐBan.getText()) != null) {
-            sb.append("Mã ĐH Bàn này đã tồn tại trong CSDL vui lòng nhập mã người học khác\n");
+            sb.append("Mã ĐH Bàn này đã tồn tại trong CSDL vui lòng nhập mã ĐH bàn khác\n");
             kq = false;
 
         }
@@ -149,12 +160,12 @@ public class DonHangBanJD extends javax.swing.JDialog {
             sb.append("Giờ bắt đầu không đúng định dạng (HH:mm)\n");
             kq = false;
         }
-
+        
         try {
             if (txtGioKetThuc.getText().length() == 0) {
                 sb.append("Giờ kết thúc không được để trống\n");
                 kq = false;
-            } else {
+            }else {
                 Date d = new SimpleDateFormat("HH:mm").parse(txtGioKetThuc.getText());
                 //Date d = new SimpleDateFormat("yyyy-MM-dd").parse(txtNgayDK.getText());
             }
@@ -162,19 +173,21 @@ public class DonHangBanJD extends javax.swing.JDialog {
             sb.append("Giờ kết thúc không đúng định dạng (HH:mm)\n");
             kq = false;
         }
-
+       
         if (txtSoGio.getText().equals("")) {
             sb.append("Số giờ không  được để trống\n");
             kq = false;
+        }else if (Float.parseFloat(txtSoGio.getText()) < 0){
+            sb.append("Vui lòng nhập giờ kết thúc lớn hơn giờ bắt đầu\n");
+            kq = false;
         }
-
         if (txtDonGia.getText().equals("")) {
-            sb.append("Số giờ không  được để trống\n");
+            sb.append("Đơn giá không  được để trống\n");
             kq = false;
         }
 
         if (txtTongTien.getText().equals("")) {
-            sb.append("Số giờ không  được để trống\n");
+            sb.append("Tổng tiền không  được để trống\n");
             kq = false;
         }
 
@@ -203,7 +216,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
         txtTongTien = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         btnXacNhan = new javax.swing.JButton();
-        btnQuayLai = new javax.swing.JButton();
+        btnMoi = new javax.swing.JButton();
         cboMaBan = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         txtMaHĐBan = new javax.swing.JTextField();
@@ -252,11 +265,9 @@ public class DonHangBanJD extends javax.swing.JDialog {
         jLabel7.setText("Đơn Giá");
 
         txtGioBatDau.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtGioBatDau.setText("10:30");
         txtGioBatDau.setBorder(null);
 
         txtGioKetThuc.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtGioKetThuc.setText("12:00");
         txtGioKetThuc.setBorder(null);
         txtGioKetThuc.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -287,14 +298,14 @@ public class DonHangBanJD extends javax.swing.JDialog {
             }
         });
 
-        btnQuayLai.setBackground(new java.awt.Color(255, 255, 255));
-        btnQuayLai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnQuayLai.setForeground(new java.awt.Color(0, 153, 153));
-        btnQuayLai.setText("Mới");
-        btnQuayLai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 3));
-        btnQuayLai.addActionListener(new java.awt.event.ActionListener() {
+        btnMoi.setBackground(new java.awt.Color(255, 255, 255));
+        btnMoi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnMoi.setForeground(new java.awt.Color(0, 153, 153));
+        btnMoi.setText("Mới");
+        btnMoi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153), 3));
+        btnMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQuayLaiActionPerformed(evt);
+                btnMoiActionPerformed(evt);
             }
         });
 
@@ -310,7 +321,6 @@ public class DonHangBanJD extends javax.swing.JDialog {
         jLabel9.setText("Ma ĐH Bàn");
 
         txtMaHĐBan.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtMaHĐBan.setText("DHB01");
         txtMaHĐBan.setBorder(null);
 
         btnQuayLai1.setBackground(new java.awt.Color(255, 255, 255));
@@ -332,7 +342,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
                 .addGap(77, 77, 77)
                 .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(57, 57, 57)
-                .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnQuayLai1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
@@ -396,7 +406,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnQuayLai, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnQuayLai1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27))
         );
@@ -429,14 +439,18 @@ public class DonHangBanJD extends javax.swing.JDialog {
     }//GEN-LAST:event_txtGioKetThucFocusLost
 
     private void btnXacNhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXacNhanActionPerformed
-        if (checkForm() == true)
+        if (checkForm() == true){
             //JOptionPane.showMessageDialog(this, "Hí ae");
+            Ban b = new Ban();
+            b.setMaBan(Integer.parseInt((String) cboMaBan.getSelectedItem()));
+            BanDAO.update(b);
             insert();
+        }   
     }//GEN-LAST:event_btnXacNhanActionPerformed
 
-    private void btnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLaiActionPerformed
+    private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
         this.clearForm();
-    }//GEN-LAST:event_btnQuayLaiActionPerformed
+    }//GEN-LAST:event_btnMoiActionPerformed
 
     private void btnQuayLai1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuayLai1ActionPerformed
         this.dispose();
@@ -486,7 +500,7 @@ public class DonHangBanJD extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnQuayLai;
+    private javax.swing.JButton btnMoi;
     private javax.swing.JButton btnQuayLai1;
     private javax.swing.JButton btnXacNhan;
     private javax.swing.JComboBox<String> cboMaBan;

@@ -13,12 +13,12 @@ public class DonHang {
     private String ngayTao;
     private int khuyenMai;
     private float tongTien;
-    private String ghiChu;
 
     public DonHang() {
     }
 
-    public DonHang(String maDH, String maKH, String maDHDV, String maDHB, String maNV, String ngayTao, int khuyenMai, float tongTien, String ghiChu) {
+    public DonHang(String maDH, String maKH, String maDHDV, String maDHB, 
+            String maNV, String ngayTao, int khuyenMai, float tongTien) {
         this.maDH = maDH;
         this.maKH = maKH;
         this.maDHDV = maDHDV;
@@ -27,7 +27,6 @@ public class DonHang {
         this.ngayTao = ngayTao;
         this.khuyenMai = khuyenMai;
         this.tongTien = tongTien;
-        this.ghiChu = ghiChu;
     }
 
     public String getMaDH() {
@@ -94,12 +93,5 @@ public class DonHang {
         this.tongTien = tongTien;
     }
 
-    public String getGhiChu() {
-        return ghiChu;
-    }
-
-    public void setGhiChu(String ghiChu) {
-        this.ghiChu = ghiChu;
-    }
     
 }

@@ -8,8 +8,10 @@ import Entyti.Ban;
 import Utils.JDBCHelper;
 import Entyti.NhanVien;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -21,6 +23,10 @@ public class BanDAO extends QuanLyBiADAO<Ban, Integer>{
     String delete = "Delete from Ban where maBan = ?";
     String selectAll = "select * from Ban";
     String selectById = "Select * from Ban Where maBan = ?";
+    String up = "Update Ban set TrangThai = 'Đang thuê' Where MaBan = ?";
+    String up1 = "Update Ban set TrangThai = N'Trống' Where MaBan = ?";
+    String set = "select trangthai from ban where maban = ?";
+
 
     @Override
     public void insert(Ban entity) {
@@ -29,7 +35,11 @@ public class BanDAO extends QuanLyBiADAO<Ban, Integer>{
 
     @Override
     public void update(Ban entity) {
-        JDBCHelper.update(update, entity.getTenBan(), entity.getLoaiBan(), entity.getTrangThai(), entity.getMaBan());
+        JDBCHelper.update(up, entity.getMaBan());
+    }
+    
+    public void update1(Ban entity) {
+        JDBCHelper.update(up1, entity.getMaBan());
     }
 
     @Override
@@ -51,6 +61,13 @@ public class BanDAO extends QuanLyBiADAO<Ban, Integer>{
                 return null;
             }
             return list.get(0); 
+    }
+     public String setTrangThai(String id) throws SQLException{
+        ResultSet rs = JDBCHelper.query(set, id);
+        while(rs.next()){
+           return rs.getString(1);
+        }
+        return null;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class DonHangBanDAO extends QuanLyBiADAO<DonHangBan, String>{
     String insert = "Insert into DonHangBan Values(?, ?, ?, ?, ?, ?, ?)";
     String selectById = "Select * from DonHangBan Where maDHB = ?";
     String comboBoxMaBan = "Select MaBan from Ban";
-    String fillDonGia = "select gia from DonHangBan where MaBan = ?";
+    String fillDonGia = "select DonGia from Ban where MaBan = ?";
     
     @Override
     public void insert(DonHangBan entity) {
