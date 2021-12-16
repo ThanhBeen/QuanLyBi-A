@@ -20,22 +20,28 @@ import javax.swing.JTextField;
  */
 public class DonHangBanDAO extends QuanLyBiADAO<DonHangBan, String>{
     
-    String insert = "Insert into DonHangBan Values(?, ?, ?, ?, ?, ?, ?)";
+    String insert = "Insert into DonHangBan Values(?, ?, ?, ?, ?, ?, ?, ?)";
     String selectById = "Select * from DonHangBan Where maDHB = ?";
+    String selectAll = "select * from DonHangBan";
     String comboBoxMaBan = "Select MaBan from Ban";
     String fillDonGia = "select DonGia from Ban where MaBan = ?";
+    String up = "update donhangban set [TrangThai] = N'Đang xử lý' where madhb = ?";
+    String up1 = "update donhangban set [TrangThai] = N'Đã thanh toán' where madhb = ?";
     
     @Override
     public void insert(DonHangBan entity) {
         JDBCHelper.update(insert, entity.getMaDHB(), entity.getMaBan(), entity.getThoiGianBatDau(), 
-                entity.getThoiGianKetThuc(), entity.getGioThue(), entity.getGia(), entity.getTongTien());
+                entity.getThoiGianKetThuc(), entity.getGioThue(), entity.getGia(), entity.getTongTien(), entity.getTrangThai());
     }
 
     @Override
     public void update(DonHangBan entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(up, entity.getMaDHB());
     }
-
+    public void update1(DonHangBan entity) {
+        JDBCHelper.update(up1, entity.getMaDHB());
+    }
+    
     @Override
     public void delete(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -43,7 +49,7 @@ public class DonHangBanDAO extends QuanLyBiADAO<DonHangBan, String>{
 
     @Override
     public List<DonHangBan> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return selectBySql(selectAll);
     }
 
     @Override
@@ -71,6 +77,7 @@ public class DonHangBanDAO extends QuanLyBiADAO<DonHangBan, String>{
                 entity.setGioThue(rs.getFloat(5));
                 entity.setGia(rs.getFloat(6));
                 entity.setTongTien(rs.getFloat(7));
+                entity.setTrangThai(rs.getString(8));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();

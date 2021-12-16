@@ -13,16 +13,18 @@ public class DonHangDV {
     private float gia;
     private int soLuong;
     private float tongTien;
-
+    private String trangThai;
+    
     public DonHangDV() {
     }
 
-    public DonHangDV(String maDHDV, String maDV, float gia, int soLuong, float tongTien) {
+    public DonHangDV(String maDHDV, String maDV, float gia, int soLuong, float tongTien, String trangThai) {
         this.maDHDV = maDHDV;
         this.maDV = maDV;
         this.gia = gia;
         this.soLuong = soLuong;
         this.tongTien = tongTien;
+        this.trangThai = trangThai;
     }
 
     public String getMaDHDV() {
@@ -64,6 +66,14 @@ public class DonHangDV {
     public void setTongTien(float tongTien) {
         this.tongTien = tongTien;
     }
-    
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
 }
     

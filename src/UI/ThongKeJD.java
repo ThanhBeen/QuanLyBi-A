@@ -25,6 +25,9 @@ public class ThongKeJD extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         init();
+        if(!Auth.isManager()){
+            tabs.remove(3);
+        }
     }
     
      private void init() {
@@ -90,6 +93,9 @@ public class ThongKeJD extends javax.swing.JDialog {
             });
         }
     }
+    public void selectTab(int index){
+        tabs.setSelectedIndex(index);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,7 +123,7 @@ public class ThongKeJD extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 204));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("THỐNG KÊ");
 
@@ -152,6 +158,8 @@ public class ThongKeJD extends javax.swing.JDialog {
                 "MaDV", "Ten", "Giá", "Số lượng", "Doanh thu"
             }
         ));
+        tblDVBanChay.setRowHeight(25);
+        tblDVBanChay.setRowMargin(5);
         jScrollPane1.setViewportView(tblDVBanChay);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -165,10 +173,7 @@ public class ThongKeJD extends javax.swing.JDialog {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 490, Short.MAX_VALUE)
         );
 
         tabs.addTab("Dịch vụ bán chạy ", jPanel7);
@@ -184,6 +189,8 @@ public class ThongKeJD extends javax.swing.JDialog {
                 "Tháng", "Số lượng khách hàng"
             }
         ));
+        tblLuongNguoiChoi.setRowHeight(25);
+        tblLuongNguoiChoi.setRowMargin(5);
         jScrollPane2.setViewportView(tblLuongNguoiChoi);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -199,7 +206,7 @@ public class ThongKeJD extends javax.swing.JDialog {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -216,6 +223,8 @@ public class ThongKeJD extends javax.swing.JDialog {
                 "MaNV", "Họ tên", "SĐT", "Số lượng đơn hàng"
             }
         ));
+        tblNhanVienXS.setRowHeight(25);
+        tblNhanVienXS.setRowMargin(5);
         jScrollPane3.setViewportView(tblNhanVienXS);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -231,7 +240,7 @@ public class ThongKeJD extends javax.swing.JDialog {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -259,6 +268,8 @@ public class ThongKeJD extends javax.swing.JDialog {
                 "Mã bàn", "Loại bàn", "Số lượng KH", "Doanh thu"
             }
         ));
+        tblDoanhThu.setRowHeight(25);
+        tblDoanhThu.setRowMargin(5);
         jScrollPane4.setViewportView(tblDoanhThu);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -283,7 +294,7 @@ public class ThongKeJD extends javax.swing.JDialog {
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboThang, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

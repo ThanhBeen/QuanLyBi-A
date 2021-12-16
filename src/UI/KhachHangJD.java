@@ -94,13 +94,14 @@ public class KhachHangJD extends javax.swing.JDialog {
         kh.setHoTen(txtHoTen.getText());
         kh.setMaKH(txtMaKH.getText());
         kh.setMaNV(cboMaNV.getSelectedItem()+ "");
-        /*try {
+        try {
             String ngayDK = txtNgayDK.getText();
             Date date = new SimpleDateFormat("yyyy-MM-dd").parse(ngayDK);
             kh.setNgayDK(date);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
+        
         kh.setSdt(txtSDT.getText());
         return kh;
     }
@@ -278,7 +279,7 @@ public class KhachHangJD extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("KHÁCH HÀNG THÂN THIẾT");
+        jLabel1.setText("QUẢN LÝ KHÁCH HÀNG");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -299,6 +300,7 @@ public class KhachHangJD extends javax.swing.JDialog {
 
         tabsKhachHang.setBackground(new java.awt.Color(0, 102, 102));
         tabsKhachHang.setForeground(new java.awt.Color(0, 153, 153));
+        tabsKhachHang.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -364,6 +366,11 @@ public class KhachHangJD extends javax.swing.JDialog {
         txtNgayDK.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtNgayDK.setText("2021-07-07");
         txtNgayDK.setBorder(null);
+        txtNgayDK.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNgayDKFocusLost(evt);
+            }
+        });
 
         jSeparator7.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -409,7 +416,7 @@ public class KhachHangJD extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(108, Short.MAX_VALUE)
+                .addContainerGap(86, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -499,7 +506,7 @@ public class KhachHangJD extends javax.swing.JDialog {
                     .addComponent(txtNgayDK, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnMoi, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -530,7 +537,8 @@ public class KhachHangJD extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tblKhachHang.setRowHeight(24);
+        tblKhachHang.setRowHeight(25);
+        tblKhachHang.setRowMargin(5);
         tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tblKhachHangMousePressed(evt);
@@ -542,13 +550,17 @@ public class KhachHangJD extends javax.swing.JDialog {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 65, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         tabsKhachHang.addTab("DANH SÁCH", jPanel3);
@@ -558,14 +570,18 @@ public class KhachHangJD extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(tabsKhachHang)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(tabsKhachHang)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tabsKhachHang))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabsKhachHang)
+                .addContainerGap())
         );
 
         pack();
@@ -573,14 +589,18 @@ public class KhachHangJD extends javax.swing.JDialog {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         check++;
-        if (checkForm() == true)
+        if (checkForm() == true){
             insert();
+            fillTable();
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         check =0;
-        if (checkForm() == true)
+        if (checkForm() == true){
             update();
+            fillTable();
+        }
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMoiActionPerformed
@@ -591,6 +611,7 @@ public class KhachHangJD extends javax.swing.JDialog {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         delete();
+        fillTable();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblKhachHangMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMousePressed
@@ -601,6 +622,12 @@ public class KhachHangJD extends javax.swing.JDialog {
             edit();
         }
     }//GEN-LAST:event_tblKhachHangMousePressed
+
+    private void txtNgayDKFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNgayDKFocusLost
+        Date now = new Date();
+        String check = new SimpleDateFormat("yyyy-MM-dd").format(now);
+        txtNgayDK.setText(check);
+    }//GEN-LAST:event_txtNgayDKFocusLost
 
     /**
      * @param args the command line arguments

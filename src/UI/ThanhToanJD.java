@@ -7,8 +7,11 @@ package UI;
 import DAO.BanDAO;
 import DAO.DonHangBanDAO;
 import DAO.DonHangDAO;
+import DAO.DonHangDVDAO;
 import Entyti.Ban;
 import Entyti.DonHang;
+import Entyti.DonHangBan;
+import Entyti.DonHangDV;
 import Utils.MsgBox;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,13 +26,13 @@ public class ThanhToanJD extends javax.swing.JDialog {
 
     DonHangDAO dao = new DonHangDAO();
     DonHangBanDAO dhbDAO = new DonHangBanDAO();
+    DonHangDVDAO dhdvDAO = new DonHangDVDAO();
     BanDAO BanDAO = new BanDAO();
     
     public ThanhToanJD(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         init();
-        
     }
     
     private void init(){
@@ -131,6 +134,24 @@ public class ThanhToanJD extends javax.swing.JDialog {
         }
     }
     
+    void update(){
+        try {
+            DonHangBan dhb = new DonHangBan();
+            dhb.setMaDHB(cboMaDHBan.getSelectedItem() + "");
+            dhbDAO.update1(dhb);
+        } catch (Exception e) {
+        }
+    }
+    
+    void update1(){
+        try {
+            DonHangDV dhdv = new DonHangDV();
+            dhdv.setMaDHDV(cboMaDHDV.getSelectedItem() + "");
+            dhdvDAO.update1(dhdv);
+        } catch (Exception e) {
+        }
+    }
+    
     boolean checkForm() {
         boolean kq = true;
         StringBuilder sb = new StringBuilder();
@@ -147,6 +168,27 @@ public class ThanhToanJD extends javax.swing.JDialog {
             sb.append("Vui lòng chọn mã khách hàng\n");
             kq = false;
         }
+        ///////
+        try {
+            String checkk = dao.checkTrangThai((String) cboMaDHBan.getSelectedItem());
+            //MsgBox.alert(this, "cc" + checkk);
+            if(checkk.equalsIgnoreCase("Đã thanh toán")){
+                sb.append("Mã ĐH Bàn này đã được thanh toán, vui lòng chọn mã ĐH Bàn khác\n");
+                kq = false;
+            }
+        } catch (Exception e) {
+        }
+        
+        try {
+            String checkk1 = dao.checkTrangThai1((String) cboMaDHDV.getSelectedItem());
+            //MsgBox.alert(this, "cc" + checkk);
+            if(checkk1.equalsIgnoreCase("Đã thanh toán")){
+                sb.append("Mã ĐH Dịch Vụ này đã được thanh toán, vui lòng chọn mã ĐH Dịch Vụ khác\n");
+                kq = false;
+            }
+        } catch (Exception e) {
+        }
+        
 
         if (cboMaNV.getSelectedIndex() == 0) {
             sb.append("Vui lòng chọn mà nhân viên\n");
@@ -217,7 +259,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
         cboMaKH = new javax.swing.JComboBox<>();
         cboMaDHBan = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
-        txtKhuyenMai = new javax.swing.JTextField();
+        txtKhuyenMaiiiiiii = new javax.swing.JTextField();
         txtTongTien = new javax.swing.JTextField();
         btnThanhToan = new javax.swing.JButton();
         jSeparator12 = new javax.swing.JSeparator();
@@ -227,6 +269,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
         jSeparator5 = new javax.swing.JSeparator();
         txtNgayTao = new javax.swing.JTextField();
         cboMaBan = new javax.swing.JComboBox<>();
+        txtKhuyenMai = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -340,7 +383,8 @@ public class ThanhToanJD extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
-        jLabel1.setText("Chi Tiết Hóa Đơn");
+        jLabel1.setForeground(new java.awt.Color(0, 153, 153));
+        jLabel1.setText("HÓA ĐƠN CHI TIẾT");
 
         jSeparator2.setBackground(new java.awt.Color(0, 153, 153));
         jSeparator2.setForeground(new java.awt.Color(0, 153, 153));
@@ -408,9 +452,9 @@ public class ThanhToanJD extends javax.swing.JDialog {
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setText("Khuyến mãi");
 
-        txtKhuyenMai.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        txtKhuyenMai.setText("10");
-        txtKhuyenMai.setBorder(null);
+        txtKhuyenMaiiiiiii.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtKhuyenMaiiiiiii.setText("%");
+        txtKhuyenMaiiiiiii.setBorder(null);
 
         txtTongTien.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         txtTongTien.setBorder(null);
@@ -442,6 +486,15 @@ public class ThanhToanJD extends javax.swing.JDialog {
 
         cboMaBan.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
         cboMaBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        txtKhuyenMai.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        txtKhuyenMai.setText("10");
+        txtKhuyenMai.setBorder(null);
+        txtKhuyenMai.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtKhuyenMaiFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -510,8 +563,13 @@ public class ThanhToanJD extends javax.swing.JDialog {
                                         .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(58, 58, 58)
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(txtKhuyenMai)
-                                        .addComponent(txtTongTien)))))
+                                        .addComponent(txtTongTien)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addGap(8, 8, 8)
+                                            .addComponent(txtKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txtKhuyenMaiiiiiii, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, Short.MAX_VALUE))))))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
@@ -545,7 +603,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cboMaBan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(cboMaDHBan, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -567,12 +625,15 @@ public class ThanhToanJD extends javax.swing.JDialog {
                         .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator12, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14)
+                        .addGap(21, 21, 21)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(jSeparator13, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txtKhuyenMaiiiiiii, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(9, 9, 9)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -619,6 +680,8 @@ public class ThanhToanJD extends javax.swing.JDialog {
             b.setMaBan(Integer.parseInt((String) cboMaBan.getSelectedItem()));
             BanDAO.update1(b);
             insert();
+            update();
+            update1();
         }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
@@ -630,6 +693,10 @@ public class ThanhToanJD extends javax.swing.JDialog {
     private void cboMaDHDVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboMaDHDVActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cboMaDHDVActionPerformed
+
+    private void txtKhuyenMaiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtKhuyenMaiFocusLost
+        fillTienBan();
+    }//GEN-LAST:event_txtKhuyenMaiFocusLost
 
     /**
      * @param args the command line arguments
@@ -715,6 +782,7 @@ public class ThanhToanJD extends javax.swing.JDialog {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JTextField txtKhuyenMai;
+    private javax.swing.JTextField txtKhuyenMaiiiiiii;
     private javax.swing.JTextField txtMaDH;
     private javax.swing.JTextField txtNgayTao;
     private javax.swing.JTextField txtTongTien;

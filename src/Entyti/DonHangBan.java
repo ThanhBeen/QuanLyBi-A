@@ -13,12 +13,12 @@ public class DonHangBan {
     private int maBan;
     private String thoiGianBatDau, thoiGianKetThuc;
     private float gioThue, gia, tongTien;
+    private String trangThai;
 
     public DonHangBan() {
     }
 
-    public DonHangBan(String maDHB, int maBan, String thoiGianBatDau, 
-            String thoiGianKetThuc, float gioThue, float gia, float tongTien) {
+    public DonHangBan(String maDHB, int maBan, String thoiGianBatDau, String thoiGianKetThuc, float gioThue, float gia, float tongTien, String trangThai) {
         this.maDHB = maDHB;
         this.maBan = maBan;
         this.thoiGianBatDau = thoiGianBatDau;
@@ -26,6 +26,7 @@ public class DonHangBan {
         this.gioThue = gioThue;
         this.gia = gia;
         this.tongTien = tongTien;
+        this.trangThai = trangThai;
     }
 
     public String getMaDHB() {
@@ -83,5 +84,14 @@ public class DonHangBan {
     public void setTongTien(float tongTien) {
         this.tongTien = tongTien;
     }
+
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
     
 }

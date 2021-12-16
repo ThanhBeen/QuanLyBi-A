@@ -19,22 +19,30 @@ import javax.swing.JComboBox;
  */
 public class DonHangDVDAO extends QuanLyBiADAO<DonHangDV, String>{
 
-    String insert = "Insert into DonHangDV Values(?, ?, ?, ?, ?)";
+    String insert = "Insert into DonHangDV Values(?, ?, ?, ?, ?, ?)";
     String comboBoxMaDV = "Select MaDV from DichVu";
     String selectById = "Select * from DonHangDV Where maDHDV = ?";
     String fillDonGia = "select gia from DichVu where MaDV like ?";
+    String fillTenDV = "select ten from DichVu where MaDV like ?";
+    String selectAll = "Select * from DonHangDV";
+    String up = "update DonHangDV set [TrangThai] = N'Đang xử lý' where MaDHDV = ?";
+    String up1 = "update DonHangDV set [TrangThai] = N'Đã thanh toán' where MaDHDV = ?";
     
     @Override
     public void insert(DonHangDV entity) {
         JDBCHelper.update(insert, entity.getMaDHDV(), entity.getMaDV(), 
-                entity.getGia(), entity.getSoLuong(), entity.getTongTien());
+                entity.getGia(), entity.getSoLuong(), entity.getTongTien(), entity.getTrangThai());
     }
 
     @Override
     public void update(DonHangDV entity) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        JDBCHelper.update(up, entity.getMaDHDV());
     }
-
+    
+    public void update1(DonHangDV entity) {
+        JDBCHelper.update(up1, entity.getMaDHDV());
+    }
+    
     @Override
     public void delete(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -42,7 +50,7 @@ public class DonHangDVDAO extends QuanLyBiADAO<DonHangDV, String>{
 
     @Override
     public List<DonHangDV> selectAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return selectBySql(selectAll);
     }
 
     @Override
@@ -68,6 +76,7 @@ public class DonHangDVDAO extends QuanLyBiADAO<DonHangDV, String>{
                 entity.setGia(rs.getFloat(3));
                 entity.setSoLuong(rs.getInt(4));
                 entity.setTongTien(rs.getFloat(5));
+                entity.setTrangThai(rs.getString(6));
                 list.add(entity);
             }
             rs.getStatement().getConnection().close();
@@ -87,6 +96,14 @@ public class DonHangDVDAO extends QuanLyBiADAO<DonHangDV, String>{
     }
     public String fillDonGia(JComboBox cboMaDV) throws SQLException{
         ResultSet rs = JDBCHelper.query(fillDonGia, cboMaDV.getSelectedItem());
+        if(rs.next()){
+            return rs.getString(1);
+        }
+         return null;
+    }
+    
+    public String fillTen(JComboBox cboMaDV) throws SQLException{
+        ResultSet rs = JDBCHelper.query(fillTenDV, cboMaDV.getSelectedItem());
         if(rs.next()){
             return rs.getString(1);
         }
